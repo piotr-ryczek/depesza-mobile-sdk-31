@@ -4,8 +4,6 @@ import {
   DrawerContentScrollView,
   DrawerItemList,
   DrawerItem,
-  DrawerContentComponentProps,
-  DrawerContentOptions,
 } from '@react-navigation/drawer';
 
 import { showToast } from 'lib/helpers';
@@ -14,12 +12,13 @@ import { ToastType } from 'types';
 import { FONT_BASE_COLOR, FONT_FAMILY_HEADER } from 'styles';
 import { useAppDispatch } from 'lib/hooks';
 
-interface DrawerContentProps
-  extends DrawerContentComponentProps<DrawerContentOptions> {
-  jwtToken: string;
-}
+// interface DrawerContentProps
+//   extends DrawerContentComponentProps<DrawerContentOptions> {
+//   jwtToken: string;
+// }
 
-export const DrawerContent = (props: DrawerContentProps) => {
+// DrawerContentProps
+export const DrawerContent = (props) => {
   const { jwtToken, state, ...rest } = props;
   const { navigation } = props;
 
@@ -47,14 +46,9 @@ export const DrawerContent = (props: DrawerContentProps) => {
     );
   };
 
-  const newState = { ...state };
-  Object.assign(newState, {
-    routes: newState.routes.filter(({ name }) => name !== 'ConfirmEmail'),
-  });
-
   return (
     <DrawerContentScrollView {...rest}>
-      <DrawerItemList state={newState} {...rest} />
+      <DrawerItemList state={state} {...rest} />
       {!!jwtToken && (
         <DrawerItem
           label="Wyloguj"

@@ -1,4 +1,5 @@
-import { Toast } from 'native-base';
+import React from 'react';
+import { Toast, Box, Text } from 'native-base';
 
 import {
   ToastType,
@@ -21,23 +22,24 @@ export const getCurrentRoute = (state) => {
 };
 
 export const showToast = (type: ToastType, message: string) => {
-  const toastType = (() => {
+  const toastBackgroundColor = (() => {
     switch (type) {
       case ToastType.ERROR:
-        return 'danger';
-
+        return '#de4640';
       case ToastType.SUCCESS:
-        return 'success';
+        return '#2f8729';
       default:
-        return 'warning';
+        return '#deac40';
     }
   })();
 
   Toast.show({
-    text: message,
-    buttonText: 'Ok',
     duration: 3000,
-    type: toastType,
+    render: () => (
+      <Box bg={toastBackgroundColor} px="6" py="3" rounded="sm" mb={6}>
+        <Text style={{ color: 'white' }}>{message}</Text>
+      </Box>
+    ),
   });
 };
 

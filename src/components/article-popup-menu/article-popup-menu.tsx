@@ -31,13 +31,8 @@ export const ArticlePopupMenu = (props: ArticlePopupMenuProps) => {
   const menuRef = useRef(null);
   const dispatch = useAppDispatch();
 
-  const {
-    jwtToken,
-    role,
-    savedArticles,
-    reportedArticles,
-    publisherId,
-  } = useAppSelector((state) => state);
+  const { jwtToken, role, savedArticles, reportedArticles, publisherId } =
+    useAppSelector((state) => state);
 
   const isLoggedReader = !!(jwtToken && role === UserRole.READER);
   const isLoggedPublisher = !!(jwtToken && role === UserRole.PUBLISHER);
@@ -180,14 +175,8 @@ export const ArticlePopupMenu = (props: ArticlePopupMenuProps) => {
       onPress={handleMenuPress}
       // style={styles.touchableContainer}
     >
-      <View style={styles.iconWrapper}>
-        <Icon
-          name="ellipsis-v"
-          size={20}
-          color="black"
-          type="font-awesome"
-          ref={menuRef}
-        />
+      <View style={styles.iconWrapper} ref={menuRef}>
+        <Icon name="ellipsis-v" size={20} color="black" type="font-awesome" />
       </View>
     </TouchableOpacity>
   );

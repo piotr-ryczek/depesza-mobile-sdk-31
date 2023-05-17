@@ -28,8 +28,6 @@ import { UserRole } from 'types';
 import { useAppSelector, useAppDispatch } from 'lib/hooks';
 
 import { DrawerContent, drawerStyles } from './drawer-content';
-import { StyleSheet } from 'react-native';
-import { FONT_BASE_COLOR, FONT_FAMILY_HEADER } from 'styles';
 
 export type DrawerParamList = {
   ArticlesStack: NavigatorScreenParams<ArticlesStackParamList>;
@@ -117,7 +115,10 @@ export const AppDrawer = () => {
         <Screen
           name="ConfirmEmail"
           component={ConfirmEmailScreen}
-          options={{ headerTitle: 'Potwierdzenie email' }}
+          options={{
+            headerTitle: 'Potwierdzenie email',
+            drawerItemStyle: { height: 0 },
+          }}
         />
       )}
     </Navigator>

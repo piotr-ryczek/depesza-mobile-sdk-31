@@ -2,12 +2,11 @@ import React, { useReducer, useState } from 'react';
 import { ScrollView, View, TouchableWithoutFeedback } from 'react-native';
 import {
   Button,
-  Item,
+  FormControl,
   Input,
-  Label,
   Text as NativeBaseText,
-  Icon,
 } from 'native-base';
+import { Icon } from 'react-native-elements';
 import { StackScreenProps } from '@react-navigation/stack';
 
 import { Loading } from 'components/loading';
@@ -46,6 +45,7 @@ export const LoginPublisherScreen = (props: LoginPublisherScreenProps) => {
       code: '',
     },
   );
+  const { email, password, code } = formValues;
 
   const handleTextChange = (fieldName: string) => (value: string) => {
     setFormValues({
@@ -56,8 +56,6 @@ export const LoginPublisherScreen = (props: LoginPublisherScreenProps) => {
   const handleLogin = async () => {
     setIsLoading(true);
     try {
-      const { email, password, code } = formValues;
-
       const { data } = await api.publisherLogin(email, password, code);
       const { token, articlesReported, publisherId } = data;
 
@@ -85,23 +83,25 @@ export const LoginPublisherScreen = (props: LoginPublisherScreenProps) => {
       <FormWrapper>
         <FormSection first last>
           <ItemWrapper>
-            <Item floatingLabel>
-              <Label>Email</Label>
+            <FormControl>
               <Input
                 onChangeText={handleTextChange('email')}
-                autoCompleteType="email"
+                autoComplete="email"
                 keyboardType="email-address"
+                value={email}
+                placeholder="Email"
               />
-            </Item>
+            </FormControl>
           </ItemWrapper>
           <ItemWrapper>
-            <Item floatingLabel>
-              <Label>Hasło</Label>
+            <FormControl>
               <Input
                 secureTextEntry={!isPasswordVisible}
                 onChangeText={handleTextChange('password')}
+                value={password}
+                placeholder="Hasło"
               />
-            </Item>
+            </FormControl>
             <View
               style={[
                 formStyles.iconWrapperOverInput,
@@ -113,25 +113,27 @@ export const LoginPublisherScreen = (props: LoginPublisherScreenProps) => {
                 <Icon
                   name={isPasswordVisible ? 'eye-slash' : 'eye'}
                   style={formStyles.iconOverInput}
-                  type="FontAwesome5"
+                  type="font-awesome-5"
+                  size={20}
                 />
               </TouchableWithoutFeedback>
             </View>
           </ItemWrapper>
           <ItemWrapper>
-            <Item floatingLabel>
-              <Label>Kod 2FA</Label>
-              <Input secureTextEntry onChangeText={handleTextChange('code')} />
-            </Item>
+            <FormControl>
+              <Input
+                secureTextEntry
+                onChangeText={handleTextChange('code')}
+                value={code}
+                placeholder="Kod 2FA"
+              />
+            </FormControl>
           </ItemWrapper>
           <ItemWrapper button>
-            <Button
-              primary
-              full
-              rounded
-              style={formStyles.button}
-              onPress={handleLogin}>
-              <NativeBaseText>Zaloguj</NativeBaseText>
+            <Button style={formStyles.primaryButton} onPress={handleLogin}>
+              <NativeBaseText style={formStyles.buttonText}>
+                Zaloguj
+              </NativeBaseText>
             </Button>
           </ItemWrapper>
         </FormSection>

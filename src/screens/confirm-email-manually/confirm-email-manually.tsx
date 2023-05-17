@@ -4,8 +4,7 @@ import { CommonActions, useNavigation } from '@react-navigation/native';
 import {
   Button,
   Input,
-  Item,
-  Label,
+  FormControl,
   Text as NativeBaseText,
 } from 'native-base';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
@@ -105,20 +104,20 @@ export const ConfirmEmailManuallyScreen = (
           </Text>
           <FormSpace />
           <ItemWrapper>
-            <Item floatingLabel>
-              <Label>Kod potwierdzający</Label>
-              <Input onChangeText={handleCodeChange} value={verificationCode} />
-            </Item>
+            <FormControl>
+              <Input
+                onChangeText={handleCodeChange}
+                value={verificationCode}
+                placeholder="Kod potwierdzający"
+              />
+            </FormControl>
           </ItemWrapper>
           <FormSpace />
           <ItemWrapper button>
-            <Button
-              primary
-              full
-              rounded
-              style={formStyles.button}
-              onPress={handleConfirm}>
-              <NativeBaseText>Potwierdź email</NativeBaseText>
+            <Button style={formStyles.primaryButton} onPress={handleConfirm}>
+              <NativeBaseText style={formStyles.buttonText}>
+                Potwierdź email
+              </NativeBaseText>
             </Button>
           </ItemWrapper>
         </FormSection>

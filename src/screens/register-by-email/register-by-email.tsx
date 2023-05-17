@@ -4,12 +4,11 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { DrawerNavigationProp } from '@react-navigation/drawer';
 import {
   Button,
-  Item,
+  FormControl,
   Input,
-  Label,
   Text as NativeBaseText,
-  Icon,
 } from 'native-base';
+import { Icon } from 'react-native-elements';
 import {
   useFocusEffect,
   RouteProp,
@@ -80,6 +79,8 @@ export const RegisterByEmailScreen = (props: RegisterByEmailScreenProps) => {
       repeatPassword: '',
     },
   );
+
+  const { Label, ErrorMessage } = FormControl;
 
   const {
     isLoading,
@@ -185,100 +186,100 @@ export const RegisterByEmailScreen = (props: RegisterByEmailScreenProps) => {
             </Text>
             <FormSpace />
             <Button
-              primary
-              full
-              rounded
+              style={formStyles.primaryButton}
               onPress={() => navigation.navigate('ArticlesStack' as never)}>
-              <NativeBaseText>Wróc do artykułów</NativeBaseText>
+              <NativeBaseText style={formStyles.buttonText}>
+                Wróc do artykułów
+              </NativeBaseText>
             </Button>
           </FormSection>
         ) : (
           <>
             <FormSection first>
               <ItemWrapper>
-                <Item floatingLabel error={!!validationErrors.email}>
-                  <Label>Email</Label>
+                <FormControl>
                   <Input
                     onChangeText={handleTextChange('email')}
-                    autoCompleteType="email"
+                    autoComplete="email"
                     keyboardType="email-address"
                     value={email}
+                    placeholder="Email"
                   />
-                </Item>
-                <InputError error={validationErrors.email} />
+                  <InputError error={validationErrors.email} />
+                </FormControl>
               </ItemWrapper>
               <ItemWrapper>
-                <Item floatingLabel error={!!validationErrors.password}>
-                  <Label>Hasło</Label>
+                <FormControl>
                   <Input
-                    secureTextEntry={!isPasswordVisible}
                     onChangeText={handleTextChange('password')}
                     value={password}
+                    secureTextEntry={!isPasswordVisible}
+                    placeholder="Hasło"
                   />
-                </Item>
-                <InputError error={validationErrors.password} />
-                <View
-                  style={[
-                    formStyles.iconWrapperOverInput,
-                    isPasswordVisible && formStyles.iconWrapperOverInputHold,
-                  ]}>
-                  <TouchableWithoutFeedback
-                    onPressIn={handleShowPassword}
-                    onPressOut={handleHidePassword}>
-                    <Icon
-                      name={isPasswordVisible ? 'eye-slash' : 'eye'}
-                      style={formStyles.iconOverInput}
-                      type="FontAwesome5"
-                    />
-                  </TouchableWithoutFeedback>
-                </View>
+                  <InputError error={validationErrors.password} />
+                  <View
+                    style={[
+                      formStyles.iconWrapperOverInput,
+                      isPasswordVisible && formStyles.iconWrapperOverInputHold,
+                    ]}>
+                    <TouchableWithoutFeedback
+                      onPressIn={handleShowPassword}
+                      onPressOut={handleHidePassword}>
+                      <Icon
+                        name={isPasswordVisible ? 'eye-slash' : 'eye'}
+                        style={formStyles.iconOverInput}
+                        type="font-awesome-5"
+                        size={20}
+                      />
+                    </TouchableWithoutFeedback>
+                  </View>
+                </FormControl>
               </ItemWrapper>
               <ItemWrapper>
-                <Item floatingLabel error={!!validationErrors.repeatPassword}>
-                  <Label>Powtórz hasło</Label>
+                <FormControl>
                   <Input
                     secureTextEntry={!isRepeatPasswordVisible}
                     onChangeText={handleTextChange('repeatPassword')}
                     value={repeatPassword}
+                    placeholder="Powtórz hasło"
                   />
-                </Item>
-                <InputError error={validationErrors.repeatPassword} />
-                <View
-                  style={[
-                    formStyles.iconWrapperOverInput,
-                    isPasswordVisible && formStyles.iconWrapperOverInputHold,
-                  ]}>
-                  <TouchableWithoutFeedback
-                    onPressIn={handleShowRepeatPassword}
-                    onPressOut={handleHideRepeatPassword}>
-                    <Icon
-                      name={isRepeatPasswordVisible ? 'eye-slash' : 'eye'}
-                      style={formStyles.iconOverInput}
-                      type="FontAwesome5"
-                    />
-                  </TouchableWithoutFeedback>
-                </View>
+                  <InputError error={validationErrors.repeatPassword} />
+                  <View
+                    style={[
+                      formStyles.iconWrapperOverInput,
+                      isPasswordVisible && formStyles.iconWrapperOverInputHold,
+                    ]}>
+                    <TouchableWithoutFeedback
+                      onPressIn={handleShowRepeatPassword}
+                      onPressOut={handleHideRepeatPassword}>
+                      <Icon
+                        name={isRepeatPasswordVisible ? 'eye-slash' : 'eye'}
+                        style={formStyles.iconOverInput}
+                        type="font-awesome-5"
+                        size={20}
+                      />
+                    </TouchableWithoutFeedback>
+                  </View>
+                </FormControl>
               </ItemWrapper>
               <ItemWrapper button>
                 <Button
-                  primary
-                  full
-                  rounded
-                  style={formStyles.button}
+                  style={formStyles.primaryButton}
                   onPress={handleRegister}>
-                  <NativeBaseText>Załóż konto</NativeBaseText>
+                  <NativeBaseText style={formStyles.buttonText}>
+                    Załóż konto
+                  </NativeBaseText>
                 </Button>
               </ItemWrapper>
             </FormSection>
             <Separator />
             <FormSection last>
               <Button
-                info
-                full
-                rounded
-                style={formStyles.button}
+                style={formStyles.secondaryButton}
                 onPress={() => navigation.navigate('ConfirmEmailManually')}>
-                <NativeBaseText>Potwierdź email ręcznie</NativeBaseText>
+                <NativeBaseText style={formStyles.buttonText}>
+                  Potwierdź email ręcznie
+                </NativeBaseText>
               </Button>
             </FormSection>
           </>

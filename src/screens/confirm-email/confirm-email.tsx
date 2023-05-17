@@ -6,7 +6,7 @@ import { DrawerScreenProps } from '@react-navigation/drawer';
 
 import api from 'lib/api';
 import { loginReader } from 'state/actions';
-import { screenStyles } from 'styles';
+import { formStyles, screenStyles } from 'styles';
 import { Loading } from 'components/loading';
 import { BasicReducer, basicReducer } from 'lib/basic-reducer';
 import { PageWrapper } from 'components/page';
@@ -98,8 +98,10 @@ export const ConfirmEmailScreen = (props: ConfirmEmailScreenProps) => {
           <>
             <Text>Weryfikacja nieudana.</Text>
             <FormSpace />
-            <Button primary full rounded onPress={goMainPage}>
-              <NativeBaseText>Przejdź na stronę główną</NativeBaseText>
+            <Button style={formStyles.primaryButton} onPress={goMainPage}>
+              <NativeBaseText style={formStyles.buttonText}>
+                Przejdź na stronę główną
+              </NativeBaseText>
             </Button>
           </>
         )}

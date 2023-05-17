@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { ScrollView } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { Button, Text as NativeBaseText, Icon } from 'native-base';
+import { Button, Text as NativeBaseText } from 'native-base';
+import { Icon } from 'react-native-elements';
 import { AccessToken, LoginManager } from 'react-native-fbsdk-next';
 
 import { Loading } from 'components/loading';
@@ -86,31 +87,36 @@ export const RegisterScreen = () => {
         <FormSection first>
           <Button
             style={formStyles.facebookButton}
-            full
-            rounded
             onPress={handleFacebookRegister}
-            iconLeft>
-            <Icon type="FontAwesome" name="facebook-official" />
-            <NativeBaseText>Załóż konto za pomocą FB</NativeBaseText>
+            leftIcon={
+              <Icon
+                name="facebook-official"
+                size={24}
+                color="white"
+                type="font-awesome"
+              />
+            }>
+            <NativeBaseText style={formStyles.buttonText}>
+              Załóż konto za pomocą FB
+            </NativeBaseText>
           </Button>
           <FormSpace />
           <Button
             style={formStyles.secondaryButton}
-            full
-            rounded
             onPress={() => navigation.navigate('RegisterByEmail')}>
-            <NativeBaseText>Załóż konto za pomocą email</NativeBaseText>
+            <NativeBaseText style={formStyles.buttonText}>
+              Załóż konto za pomocą email
+            </NativeBaseText>
           </Button>
         </FormSection>
         <Separator />
         <FormSection last>
           <Button
-            info
-            full
-            rounded
-            style={formStyles.button}
+            style={{ ...formStyles.button, ...formStyles.infoButton }}
             onPress={() => navigation.navigate('LoginStack')}>
-            <NativeBaseText>Masz już konto? Zaloguj się</NativeBaseText>
+            <NativeBaseText style={formStyles.buttonText}>
+              Masz już konto? Zaloguj się
+            </NativeBaseText>
           </Button>
         </FormSection>
       </FormWrapper>

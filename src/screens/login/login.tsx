@@ -3,12 +3,11 @@ import { ScrollView, TouchableWithoutFeedback, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import {
   Button,
-  Item,
+  FormControl,
   Input,
-  Label,
   Text as NativeBaseText,
-  Icon,
 } from 'native-base';
+import { Icon } from 'react-native-elements';
 import { AccessToken, LoginManager } from 'react-native-fbsdk-next';
 
 import { Loading } from 'components/loading';
@@ -45,6 +44,7 @@ export const LoginScreen = () => {
       password: '',
     },
   );
+  const { email, password } = formValues;
 
   const handleTextChange = (fieldName: string) => (value: string) => {
     setFormValues({
@@ -55,8 +55,6 @@ export const LoginScreen = () => {
   const handleLoginEmail = async () => {
     setIsLoading(true);
     try {
-      const { email, password } = formValues;
-
       const { data } = await api.loginByEmail(email, password);
 
       const {
@@ -158,34 +156,42 @@ export const LoginScreen = () => {
         <FormSection noSpaceTop>
           <Button
             style={formStyles.facebookButton}
-            full
-            rounded
             onPress={handleFacebookLogin}
-            iconLeft>
-            <Icon type="FontAwesome" name="facebook-official" />
-            <NativeBaseText>Zaloguj za pomocą Facebooka</NativeBaseText>
+            leftIcon={
+              <Icon
+                name="facebook-official"
+                size={24}
+                color="white"
+                type="font-awesome"
+              />
+            }>
+            <NativeBaseText style={formStyles.buttonText}>
+              Zaloguj za pomocą Facebooka
+            </NativeBaseText>
           </Button>
         </FormSection>
         <Separator />
         <FormSection>
           <ItemWrapper noPaddingTop>
-            <Item floatingLabel>
-              <Label>Email</Label>
+            <FormControl>
               <Input
                 onChangeText={handleTextChange('email')}
-                autoCompleteType="email"
+                autoComplete="email"
                 keyboardType="email-address"
+                value={email}
+                placeholder="Email"
               />
-            </Item>
+            </FormControl>
           </ItemWrapper>
           <ItemWrapper>
-            <Item floatingLabel>
-              <Label>Hasło</Label>
+            <FormControl>
               <Input
                 secureTextEntry={!isPasswordVisible}
                 onChangeText={handleTextChange('password')}
+                value={password}
+                placeholder="Hasło"
               />
-            </Item>
+            </FormControl>
             <View
               style={[
                 formStyles.iconWrapperOverInput,
@@ -197,40 +203,36 @@ export const LoginScreen = () => {
                 <Icon
                   name={isPasswordVisible ? 'eye-slash' : 'eye'}
                   style={formStyles.iconOverInput}
-                  type="FontAwesome5"
+                  type="font-awesome-5"
+                  size={20}
                 />
               </TouchableWithoutFeedback>
             </View>
           </ItemWrapper>
           <ItemWrapper button>
-            <Button
-              primary
-              full
-              rounded
-              style={formStyles.button}
-              onPress={handleLoginEmail}>
-              <NativeBaseText>Zaloguj</NativeBaseText>
+            <Button style={formStyles.primaryButton} onPress={handleLoginEmail}>
+              <NativeBaseText style={formStyles.buttonText}>
+                Zaloguj
+              </NativeBaseText>
             </Button>
           </ItemWrapper>
         </FormSection>
         <Separator />
         <FormSection>
           <Button
-            info
-            full
-            rounded
-            style={formStyles.button}
+            style={formStyles.secondaryButton}
             onPress={() => navigation.navigate('RegisterStack')}>
-            <NativeBaseText>Nie masz konta? Zarejestruj się</NativeBaseText>
+            <NativeBaseText style={formStyles.buttonText}>
+              Nie masz konta? Zarejestruj się
+            </NativeBaseText>
           </Button>
           <FormSpace />
           <Button
-            info
-            full
-            rounded
-            style={formStyles.button}
+            style={formStyles.secondaryButton}
             onPress={() => navigation.navigate('LoginPublisher')}>
-            <NativeBaseText>Logowanie wydawcy</NativeBaseText>
+            <NativeBaseText style={formStyles.buttonText}>
+              Logowanie wydawcy
+            </NativeBaseText>
           </Button>
         </FormSection>
       </FormWrapper>
