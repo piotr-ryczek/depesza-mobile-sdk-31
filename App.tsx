@@ -12,7 +12,6 @@ import { BottomSheetProvider } from 'lib/contexts/bottom-sheet';
 import { AppDrawer } from 'navigators/app-drawer';
 
 import { store, persistor } from 'state/store';
-import linking from 'lib/linking';
 import { theme } from 'lib/theme';
 
 const App = () => {
@@ -26,7 +25,7 @@ const App = () => {
         <PersistGate loading={null} persistor={persistor}>
           <SafeAreaProvider>
             <BottomSheetProvider>
-              <NavigationContainer linking={linking}>
+              <NavigationContainer>
                 <AppDrawer />
               </NavigationContainer>
             </BottomSheetProvider>

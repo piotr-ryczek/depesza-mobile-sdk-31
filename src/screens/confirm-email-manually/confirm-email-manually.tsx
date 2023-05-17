@@ -98,10 +98,7 @@ export const ConfirmEmailManuallyScreen = (
       <Loading isLoading={isLoading} />
       <FormWrapper>
         <FormSection first last>
-          <Text>
-            Jeśli pojawił się problem z otworzeniem otrzymanego w wiadomości
-            email linku możesz tutaj ręcznie wpisać kod.
-          </Text>
+          <Text>Skopiuj kod potwierdzający otrzymany w wiadomości email.</Text>
           <FormSpace />
           <ItemWrapper>
             <FormControl>

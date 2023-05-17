@@ -20,7 +20,6 @@ import {
   PublishersStackParamList,
 } from 'navigators/publishers-stack';
 import { AboutStack, AboutStackParamList } from 'navigators/about-stack';
-import { ConfirmEmailScreen } from 'screens/confirm-email';
 
 import { AppState } from 'state/app-state';
 import { refreshToken } from 'state/actions';
@@ -35,9 +34,6 @@ export type DrawerParamList = {
   RegisterStack: NavigatorScreenParams<RegisterStackParamList>;
   LoginStack: NavigatorScreenParams<LoginStackParamList>;
   AboutStack: NavigatorScreenParams<AboutStackParamList>;
-  ConfirmEmail: {
-    verificationCode: string;
-  };
 };
 
 const Drawer = createDrawerNavigator<DrawerParamList>();
@@ -111,16 +107,6 @@ export const AppDrawer = () => {
         options={{ title: 'O aplikacji' }}
         component={AboutStack}
       />
-      {isNotLoggedInOrHasNotAccess && (
-        <Screen
-          name="ConfirmEmail"
-          component={ConfirmEmailScreen}
-          options={{
-            headerTitle: 'Potwierdzenie email',
-            drawerItemStyle: { height: 0 },
-          }}
-        />
-      )}
     </Navigator>
   );
 };

@@ -179,20 +179,32 @@ export const RegisterByEmailScreen = (props: RegisterByEmailScreenProps) => {
       <Loading isLoading={isLoading} />
       <FormWrapper>
         {registrationComplete ? (
-          <FormSection first last>
-            <Text>
-              Sprawdź swoją skrzynkę pocztową. Znajdziesz tam email z linkiem
-              aktywacyjnym, który należy otworzyć w aplikacji.
-            </Text>
-            <FormSpace />
-            <Button
-              style={formStyles.primaryButton}
-              onPress={() => navigation.navigate('ArticlesStack' as never)}>
-              <NativeBaseText style={formStyles.buttonText}>
-                Wróc do artykułów
-              </NativeBaseText>
-            </Button>
-          </FormSection>
+          <>
+            <FormSection first>
+              <Text>
+                Sprawdź swoją skrzynkę pocztową. Znajdziesz tam email z linkiem
+                aktywacyjnym.
+              </Text>
+              <FormSpace />
+              <Button
+                style={formStyles.primaryButton}
+                onPress={() => navigation.navigate('ConfirmEmailManually')}>
+                <NativeBaseText style={formStyles.buttonText}>
+                  Przejdź do potwierdzenia email
+                </NativeBaseText>
+              </Button>
+            </FormSection>
+            <Separator />
+            <FormSection last>
+              <Button
+                style={formStyles.secondaryButton}
+                onPress={() => navigation.navigate('ArticlesStack' as never)}>
+                <NativeBaseText style={formStyles.buttonText}>
+                  Wróc do artykułów
+                </NativeBaseText>
+              </Button>
+            </FormSection>
+          </>
         ) : (
           <>
             <FormSection first>
@@ -278,7 +290,7 @@ export const RegisterByEmailScreen = (props: RegisterByEmailScreenProps) => {
                 style={formStyles.secondaryButton}
                 onPress={() => navigation.navigate('ConfirmEmailManually')}>
                 <NativeBaseText style={formStyles.buttonText}>
-                  Potwierdź email ręcznie
+                  Potwierdź email
                 </NativeBaseText>
               </Button>
             </FormSection>
