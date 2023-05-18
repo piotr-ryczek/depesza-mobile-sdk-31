@@ -1,4 +1,4 @@
-package com.depesza.newarchitecture;
+package com.articlesagregator.app.newarchitecture;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
@@ -19,9 +19,9 @@ import com.facebook.react.fabric.CoreComponentsRegistry;
 import com.facebook.react.fabric.FabricJSIModuleProvider;
 import com.facebook.react.fabric.ReactNativeConfig;
 import com.facebook.react.uimanager.ViewManagerRegistry;
-import com.depesza.BuildConfig;
-import com.depesza.newarchitecture.components.MainComponentsRegistry;
-import com.depesza.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
+import com.articlesagregator.app.BuildConfig;
+import com.articlesagregator.app.newarchitecture.components.MainComponentsRegistry;
+import com.articlesagregator.app.newarchitecture.modules.MainApplicationTurboModuleManagerDelegate;
 import java.util.ArrayList;
 import java.util.List;
 

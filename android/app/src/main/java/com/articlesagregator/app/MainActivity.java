@@ -1,4 +1,4 @@
-package com.depesza;
+package com.articlesagregator.app;
 
 import com.facebook.react.ReactActivity;
 import com.facebook.react.ReactActivityDelegate;
